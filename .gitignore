@@ -3,6 +3,9 @@ __pycache__/
 *.py[codz]
 *$py.class
 
+# Personal Project Planner
+timeline_resources.md
+
 # C extensions
 *.so
 
