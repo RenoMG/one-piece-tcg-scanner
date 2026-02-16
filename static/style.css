@@ -1,0 +1,291 @@
+/* ===== RESET & BASE ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --clr-bg: #0f0f14;
+  --clr-surface: #1a1a24;
+  --clr-border: #2a2a3a;
+  --clr-text: #e2e2e8;
+  --clr-text-muted: #8888a0;
+  --clr-accent: #d4363c; /* One Piece red */
+  --clr-accent-hover: #e04a50;
+  --clr-gold: #f5c542;
+  --radius: 8px;
+  --shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background-color: var(--clr-bg);
+  color: var(--clr-text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== HEADER ===== */
+header {
+  text-align: center;
+  padding: 1.25rem;
+  background: var(--clr-surface);
+  border-bottom: 2px solid var(--clr-accent);
+}
+
+header h1 {
+  font-size: 1.5rem;
+  letter-spacing: 0.04em;
+}
+
+/* ===== MAIN ===== */
+main {
+  flex: 1;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ===== SCANNER SECTION ===== */
+.scanner-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.camera-container {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: var(--clr-surface);
+  border: 2px dashed var(--clr-border);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.camera-placeholder {
+  text-align: center;
+  color: var(--clr-text-muted);
+}
+
+.hint {
+  font-size: 0.85rem;
+  color: var(--clr-text-muted);
+}
+
+.scanner-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.lookup-form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.lookup-form input {
+  flex: 1;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius);
+  background: var(--clr-surface);
+  color: var(--clr-text);
+  font-size: 1rem;
+}
+
+.lookup-form input:focus {
+  outline: none;
+  border-color: var(--clr-accent);
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  transition: background 0.15s ease;
+}
+
+.btn-capture {
+  background: var(--clr-surface);
+  color: var(--clr-text-muted);
+  border: 1px solid var(--clr-border);
+}
+
+.btn-capture:not(:disabled):hover {
+  border-color: var(--clr-accent);
+  color: var(--clr-text);
+}
+
+.btn-lookup {
+  background: var(--clr-accent);
+  color: #fff;
+  white-space: nowrap;
+}
+
+.btn-lookup:hover {
+  background: var(--clr-accent-hover);
+}
+
+.btn-nav {
+  background: var(--clr-surface);
+  color: var(--clr-text);
+  border: 1px solid var(--clr-border);
+  min-width: 5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-nav:hover:not(.btn-disabled) {
+  border-color: var(--clr-accent);
+}
+
+.btn-disabled {
+  opacity: 0.3;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* ===== CARD SECTION ===== */
+.card-section {
+  background: var(--clr-surface);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+.card-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.card-image-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.card-image {
+  max-height: 340px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.card-details {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.card-details h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.details-table {
+  margin: 0 auto;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.details-table th,
+.details-table td {
+  padding: 0.4rem 1rem;
+}
+
+.details-table th {
+  color: var(--clr-text-muted);
+  font-weight: 500;
+}
+
+.price {
+  color: var(--clr-gold);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* ===== RARITY BADGES ===== */
+.rarity-badge {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.rarity-c {
+  background: #555;
+  color: #ddd;
+}
+.rarity-uc {
+  background: #2e7d32;
+  color: #c8e6c9;
+}
+.rarity-r {
+  background: #1565c0;
+  color: #bbdefb;
+}
+.rarity-sr {
+  background: #8e24aa;
+  color: #e1bee7;
+}
+.rarity-sec {
+  background: linear-gradient(135deg, #f5c542, #e04a50);
+  color: #fff;
+}
+.rarity-l,
+.rarity-sp {
+  background: linear-gradient(135deg, #f5c542, #ff8f00);
+  color: #1a1a24;
+}
+
+/* ===== EMPTY STATE ===== */
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.empty-icon {
+  font-size: 3rem;
+  margin-bottom: 0.75rem;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  text-align: center;
+  padding: 1rem;
+  color: var(--clr-text-muted);
+  font-size: 0.8rem;
+  border-top: 1px solid var(--clr-border);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+  .card-image {
+    max-height: 240px;
+  }
+
+  .btn-nav {
+    min-width: 3.5rem;
+    font-size: 0.85rem;
+    padding: 0.5rem;
+  }
+}

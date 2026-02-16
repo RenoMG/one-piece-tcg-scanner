@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% block title %}OPTCG Scanner — Home{% endblock %}
+
+{% block content %}
+
+<!-- ========== CAMERA + INPUT SECTION ========== -->
+<section class="scanner-section">
+  <div class="camera-container">
+    <!--
+      Placeholder for now. In Milestone 5 you'll replace this
+      with an <img> tag pointing to your MJPEG stream route.
+    -->
+    <div class="camera-placeholder">
+      <p>📷 Camera Feed</p>
+      <p class="hint">Coming in Milestone 5</p>
+    </div>
+  </div>
+
+  <div class="scanner-controls">
+    <button id="btn-capture" class="btn btn-capture" disabled>
+      📸 Capture &amp; Auto-Detect
+    </button>
+
+    <form
+      class="lookup-form"
+      method="POST"
+      action="{{ url_for('main.lookup') }}"
+    >
+      <input
+        type="text"
+        name="card_id"
+        id="card-id-input"
+        placeholder="e.g. OP01-001"
+        pattern="[A-Za-z]{1,4}\d{2,3}-\d{3}"
+        title="Format: OP01-001, ST01-012, EB01-001, etc."
+        required
+      />
+      <button type="submit" class="btn btn-lookup">🔍 Look Up</button>
+    </form>
+  </div>
+</section>
+
+<!-- ========== CARD DISPLAY SECTION ========== -->
+<section class="card-section">
+  {% if card %}
+  <div class="card-nav">
+    <!--
+      prev_id / next_id will be None at the edges.
+      Jinja2's `if` controls whether the link is clickable.
+    -->
+    {% if prev_id %}
+    <a
+      href="{{ url_for('main.index', card_index=prev_id) }}"
+      class="btn btn-nav"
+    >
+      ◀ Back
+    </a>
+    {% else %}
+    <span class="btn btn-nav btn-disabled">◀ Back</span>
+    {% endif %}
+
+    <div class="card-image-wrapper">
+      {% if card.image_path %}
+      <img
+        src="{{ url_for('static', filename=card.image_path) }}"
+        alt="{{ card.name }}"
+        class="card-image"
+      />
+      {% else %}
+      <!--
+        Fallback: show image from API if we don't have
+        a local photo yet (pre-Milestone 5).
+      -->
+      <img
+        src="{{ card.image_url }}"
+        alt="{{ card.name }}"
+        class="card-image"
+      />
+      {% endif %}
+    </div>
+
+    {% if next_id %}
+    <a
+      href="{{ url_for('main.index', card_index=next_id) }}"
+      class="btn btn-nav"
+    >
+      Forward ▶
+    </a>
+    {% else %}
+    <span class="btn btn-nav btn-disabled">Forward ▶</span>
+    {% endif %}
+  </div>
+
+  <div class="card-details">
+    <h2>{{ card.name }}</h2>
+    <table class="details-table">
+      <tr>
+        <th>Set ID</th>
+        <td>{{ card.card_id }}</td>
+      </tr>
+      <tr>
+        <th>Set</th>
+        <td>{{ card.set_name or "—" }}</td>
+      </tr>
+      <tr>
+        <th>Rarity</th>
+        <td>
+          <span class="rarity-badge rarity-{{ card.rarity | lower }}">
+            {{ card.rarity }}
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <th>Market Price</th>
+        <td class="price">
+          {% if card.market_price is not none %}
+            ${{ "%.2f" | format(card.market_price) }}
+          {% else %}
+            —
+          {% endif %}
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  {% else %}
+
+  <!-- Empty state — shown when no card is loaded yet -->
+  <div class="empty-state">
+    <p class="empty-icon">🃏</p>
+    <p>No card loaded yet.</p>
+    <p class="hint">
+      Type a card ID above and hit <strong>Look Up</strong> to get started.
+    </p>
+  </div>
+
+  {% endif %}
+</section>
+
+{% endblock %}

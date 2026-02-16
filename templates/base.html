@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}OPTCG Scanner{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>🏴☠️ OPTCG Scanner</h1>
+    </header>
+
+    <main>
+      <!--
+        This is a Jinja2 "block". Child templates override it
+        with their own content. If they don't, this default
+        (empty) content is used.
+      -->
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+      <p>One Piece TCG Card Scanner &amp; Value Tracker</p>
+    </footer>
+
+    <!--
+      A separate JS block so individual pages can add their own
+      scripts without touching the base layout.
+    -->
+    {% block scripts %}
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+    {% endblock %}
+  </body>
+</html>

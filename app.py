@@ -1,7 +1,8 @@
 import flask
+from routes.main import main
 
 app = flask.Flask(__name__)
+app.register_blueprint(main)
 
-@app.route('/')
-def home():
-    return "Hello World"
+if __name__ == "__main__":
+    app.run()
