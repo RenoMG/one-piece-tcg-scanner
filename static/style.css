@@ -395,6 +395,7 @@ footer {
   width: 100%;
   color: var(--clr-text);
   font-family: inherit;
+  height: 320px; /* fixed card height */
 }
 
 .modal-card:hover {
@@ -404,6 +405,9 @@ footer {
 
 .modal-card-img {
   width: 100%;
+  flex: 1;
+  object-fit: contain; /* scales image without cropping */
+  min-height: 0; /* lets flex shrink the image properly */
   border-radius: calc(var(--radius) - 2px);
   margin-bottom: 0.5rem;
 }
@@ -412,6 +416,10 @@ footer {
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
+  height: 7.5rem; /* fixed info section height */
+  flex-shrink: 0; /* never shrink — image absorbs the flex */
+  justify-content: center;
+  overflow: hidden;
 }
 
 .modal-card-id {

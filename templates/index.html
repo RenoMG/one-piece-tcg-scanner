@@ -161,15 +161,15 @@
           <input type="hidden" name="exact" value="true" />
           <button type="submit" class="modal-card">
             <img
-              src="{{ choice.image_url }}"
-              alt="{{ choice.name }}"
+              src="{{ choice.card_image }}"
+              alt="{{ choice.card_name }}"
               class="modal-card-img"
             />
             <div class="modal-card-info">
-              <span class="modal-card-id">{{ choice.card_id }}</span>
-              <span class="modal-card-name">{{ choice.name }}</span>
+              <span class="modal-card-id">{{ choice.set_id }}</span>
+              <span class="modal-card-name">{{ choice.card_name }}</span>
               <span class="modal-card-rarity rarity-badge rarity-{{ choice.rarity | lower }}">
-                {{ choice.rarity }}
+                Rarity: {{ choice.rarity }}
               </span>
               {% if choice.market_price is not none %}
               <span class="modal-card-price">
