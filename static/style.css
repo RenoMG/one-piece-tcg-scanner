@@ -108,6 +108,20 @@ main {
   border-color: var(--clr-accent);
 }
 
+/* ===== SAVE SECTION ===== */
+.save-section {
+  display: flex;
+  flex-direction: list;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.scanner-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
 /* ===== BUTTONS ===== */
 .btn {
   padding: 0.6rem 1.2rem;
@@ -138,6 +152,16 @@ main {
 }
 
 .btn-lookup:hover {
+  background: var(--clr-accent-hover);
+}
+
+.btn-save {
+  background: var(--clr-accent);
+  color: #fff;
+  white-space: nowrap;
+}
+
+.btn-save:hover {
   background: var(--clr-accent-hover);
 }
 
