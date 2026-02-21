@@ -73,7 +73,7 @@
         a local photo yet (pre-Milestone 5).
       -->
       <img
-        src="{{ card.image_url }}"
+        src="{{ card.card_image }}"
         alt="{{ card.name }}"
         class="card-image"
       />
@@ -93,11 +93,11 @@
   </div>
 
   <div class="card-details">
-    <h2>{{ card.name }}</h2>
+    <h2>{{ card.card_name }}</h2>
     <table class="details-table">
       <tr>
         <th>Set ID</th>
-        <td>{{ card.card_id }}</td>
+        <td>{{ card.set_id }}</td>
       </tr>
       <tr>
         <th>Set</th>
@@ -107,7 +107,7 @@
         <th>Rarity</th>
         <td>
           <span class="rarity-badge rarity-{{ card.rarity | lower }}">
-            {{ card.rarity }}
+            Rarity: {{ card.rarity }}
           </span>
         </td>
       </tr>
@@ -157,8 +157,8 @@
             Hidden input sends the EXACT card ID back to your
             lookup route so there's no ambiguity the second time.
           -->
-          <input type="hidden" name="card_id" value="{{ choice.card_id }}" />
-          <input type="hidden" name="exact" value="true" />
+          <input type="hidden" name="card_id" value="{{ choice.card_set_id }}" />
+          <input type="hidden" name="pick_index" value="{{ loop.index0 }}" />
           <button type="submit" class="modal-card">
             <img
               src="{{ choice.card_image }}"
