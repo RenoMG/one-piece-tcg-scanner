@@ -1,0 +1,1 @@
+OP_API="https://optcgapi.com/api/sets/card"

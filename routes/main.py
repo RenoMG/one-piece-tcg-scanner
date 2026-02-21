@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template
+from services.api_client import get_api_response
 
 main = Blueprint("main", __name__)
 
@@ -8,4 +9,5 @@ def index():
 
 @main.route("/lookup")
 def lookup():
-    return "meh"
+    print(get_api_response("OP01-001"))
+    return render_template("index.html", card=None, prev_id=None, next_id=None)
