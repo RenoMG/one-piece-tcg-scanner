@@ -138,4 +138,51 @@
   {% endif %}
 </section>
 
+<!-- ========== MULTI-RESULT MODAL ========== -->
+<div id="card-select-modal" class="modal-overlay {% if not choices %}hidden{% endif %}">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Multiple Results Found</h2>
+      <button id="modal-close" class="btn-close" aria-label="Close">✕</button>
+    </div>
+    <p class="modal-subtitle">
+      We found multiple versions. Pick the one you want:
+    </p>
+
+    <div class="modal-card-grid">
+      {% if choices %}
+        {% for choice in choices %}
+        <form method="POST" action="{{ url_for('main.lookup') }}">
+          <!--
+            Hidden input sends the EXACT card ID back to your
+            lookup route so there's no ambiguity the second time.
+          -->
+          <input type="hidden" name="card_id" value="{{ choice.card_id }}" />
+          <input type="hidden" name="exact" value="true" />
+          <button type="submit" class="modal-card">
+            <img
+              src="{{ choice.image_url }}"
+              alt="{{ choice.name }}"
+              class="modal-card-img"
+            />
+            <div class="modal-card-info">
+              <span class="modal-card-id">{{ choice.card_id }}</span>
+              <span class="modal-card-name">{{ choice.name }}</span>
+              <span class="modal-card-rarity rarity-badge rarity-{{ choice.rarity | lower }}">
+                {{ choice.rarity }}
+              </span>
+              {% if choice.market_price is not none %}
+              <span class="modal-card-price">
+                ${{ "%.2f" | format(choice.market_price) }}
+              </span>
+              {% endif %}
+            </div>
+          </button>
+        </form>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
 {% endblock %}
