@@ -116,7 +116,7 @@ main {
   gap: 1rem;
 }
 
-.scanner-controls {
+.save-controls {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
