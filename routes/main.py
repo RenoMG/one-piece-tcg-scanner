@@ -40,10 +40,8 @@ def save():
     card["set_name"] = request.form["card_set"]
     card["rarity"] = request.form["card_rarity"]
     card["market_price"] = float(request.form["card_market_price"])
+    card["card_image_id"] = request.form["card_image_id"]
     
-    if len(card) == 6:
-        print("card saved!")
-        print(card)
-        return render_template("index.html", card=card, prev_id=None, next_id=None, saved=True)
-    
-    return render_template("index.html", card=card, prev_id=None, next_id=None)
+    print("card saved!")
+    print(card)
+    return render_template("index.html", card=card, prev_id=None, next_id=None, saved=True)

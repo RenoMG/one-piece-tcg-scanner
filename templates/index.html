@@ -195,12 +195,13 @@
       method="POST"
       action="{{ url_for('main.save') }}"
     >
-      <input type="hidden" name="card_image" value="{{ card.card_image}}">
-      <input type="hidden" name="card_name" value="{{ card.card_name}}">
-      <input type="hidden" name="card_set_id" value="{{ card.set_id}}">
-      <input type="hidden" name="card_set" value="{{ card.set_name}}">
-      <input type="hidden" name="card_rarity" value="{{ card.rarity}}">
-      <input type="hidden" name="card_market_price" value="{{ card.market_price}}">
+      <input type="hidden" name="card_image" value="{{ card.card_image }}">
+      <input type="hidden" name="card_name" value="{{ card.card_name }}">
+      <input type="hidden" name="card_set_id" value="{{ card.set_id }}">
+      <input type="hidden" name="card_set" value="{{ card.set_name }}">
+      <input type="hidden" name="card_rarity" value="{{ card.rarity }}">
+      <input type="hidden" name="card_market_price" value="{{ card.market_price }}">
+      <input type="hidden" name="card_image_id" value="{{ card.card_image_id }}">
       <button type="submit" class="btn btn-save">💾 Save</button>
     </form>
   </div>
