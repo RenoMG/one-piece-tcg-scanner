@@ -25,3 +25,25 @@ def lookup():
         return render_template("index.html", card=None, choices=results)
         
     return render_template("index.html", card=results[0], prev_id=None, next_id=None)
+
+@main.route("/save", methods=["POST"])
+def save():
+    card = request.form.get("card_name")
+
+    if len(card) == 0:
+        return render_template("index.html", card=None, error="No Card to save!")
+
+    card = {}
+    card["card_image"] = request.form["card_image"]
+    card["card_name"] = request.form["card_name"]
+    card["set_id"] = request.form["card_set_id"]
+    card["set_name"] = request.form["card_set"]
+    card["rarity"] = request.form["card_rarity"]
+    card["market_price"] = float(request.form["card_market_price"])
+    
+    if len(card) == 6:
+        print("card saved!")
+        print(card)
+        return render_template("index.html", card=card, prev_id=None, next_id=None, saved=True)
+    
+    return render_template("index.html", card=card, prev_id=None, next_id=None)
