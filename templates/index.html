@@ -186,6 +186,7 @@
 </div>
 
 <!-- ========== SAVE CARD ========== -->
+{% if card %}
 <section class="save-section">
  {% if not saved %}
   <div class="save-controls">
@@ -211,6 +212,7 @@
 
   {% endif %}
 </section>
+{% endif %}
 
 
 {% endblock %}
