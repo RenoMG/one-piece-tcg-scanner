@@ -28,9 +28,9 @@ def lookup():
 
 @main.route("/save", methods=["POST"])
 def save():
-    card = request.form.get("card_name")
+    card_present_check = request.form.get("card_name")
 
-    if len(card) == 0:
+    if len(card_present_check) == "None":
         return render_template("index.html", card=None, error="No Card to save!")
 
     card = {}
@@ -39,7 +39,12 @@ def save():
     card["set_id"] = request.form["card_set_id"]
     card["set_name"] = request.form["card_set"]
     card["rarity"] = request.form["card_rarity"]
-    card["market_price"] = float(request.form["card_market_price"])
+    card_market_price = request.form["card_market_price"]
+    if card_market_price == "None":
+        card["market_price"] = 0
+    else:
+        card["market_price"] = float(request.form["card_market_price"])
+        
     card["card_image_id"] = request.form["card_image_id"]
     
     print("card saved!")
